@@ -69,3 +69,9 @@ main h1 {
   cursor: pointer;
   text-decoration: underline;
 }
+
+.total__container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2rem;
+}
