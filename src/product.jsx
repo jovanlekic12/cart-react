@@ -1,10 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { FaAngleUp, FaAngleDown } from "react-icons/fa";
-function Phone(props) {
-  const { id, title, price, image, handleDeletePhone, amount, increaseAmount } =
-    props;
-
+function Product(props) {
+  const { id, title, price, image, amount, handleDeletePhone } = props;
+  const [setAmount] = useState(amount);
   return (
     <li className="list__item">
       <img src={image} alt="404" className="image" />
@@ -16,7 +15,7 @@ function Phone(props) {
         </button>
       </div>
       <div className="amount__container">
-        <FaAngleUp onClick={increaseAmount} />
+        <FaAngleUp onClick={() => setAmount(amount + 1)} />
         <h5 className="amount">{amount}</h5>
         <FaAngleDown />
       </div>
@@ -24,4 +23,4 @@ function Phone(props) {
   );
 }
 
-export default Phone;
+export default Product;

@@ -1,25 +1,20 @@
 import { useState, useEffect } from "react";
-import Phone from "./phone.jsx";
+import Product from "./product.jsx";
 import "./App.css";
 const url = "https://fakestoreapi.com/products";
 function App() {
-  const [phones, setPhones] = useState([]);
+  const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const [error, setError] = useState(null);
-  const [amount, setAmount] = useState(1);
 
   function handleDeletePhone(id) {
-    setPhones((prev) => prev.filter((phone) => phone.id !== id));
-  }
-
-  function increaseAmount() {
-    if (amount > 0) return setAmount(amount + 1);
+    setProducts((prev) => prev.filter((product) => product.id !== id));
   }
 
   function calculateTotalPrice() {
     let totalPrice = 0;
-    for (let i = 0; i < phones.length; i++) {
-      totalPrice += phones[i].price;
+    for (let i = 0; i < products.length; i++) {
+      totalPrice += products[i].price;
     }
     return Math.trunc(totalPrice);
   }
@@ -27,10 +22,9 @@ function App() {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data);
-      //const phones with amount
-      //
-      setPhones(data);
+      const productsWithAmounts = data;
+      productsWithAmounts.forEach((product) => (product.amount = 1));
+      setProducts(productsWithAmounts);
     } catch (error) {
       setError(error);
     }
@@ -41,22 +35,19 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log("pozivam se");
     setTotal(calculateTotalPrice);
-  }, [phones]);
+  }, [products]);
   return (
     <main className="main__container">
       {error && <p>Error: {error.message}</p>}
       <h1>YOUR BAG</h1>
       <ul className="list">
-        {phones.map((phone) => {
+        {products.map((product) => {
           return (
-            <Phone
-              key={phone.id}
-              {...phone}
+            <Product
+              key={product.id}
+              {...product}
               handleDeletePhone={handleDeletePhone}
-              amount={amount}
-              increaseAmount={increaseAmount}
             />
           );
         })}
