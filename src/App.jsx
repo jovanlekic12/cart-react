@@ -7,9 +7,18 @@ function App() {
   const [total, setTotal] = useState(0);
   const [error, setError] = useState(null);
 
-  function handleDeletePhone(id) {
+  function handleDeleteProduct(id) {
     setProducts((prev) => prev.filter((product) => product.id !== id));
   }
+
+  function increaseQuantity(id) {}
+
+  //napravi novi array newProducts
+  //taj novi array treba da bude napravljen od products array-a
+  //primi id u funkciju
+  //i samo za taj product koji ima taj id update mu quantity
+  //sad imas novi array newProducts sa updatetovanim proizvodom
+  //pozovi setProducts(newProducts)
 
   function calculateTotalPrice() {
     let totalPrice = 0;
@@ -47,7 +56,7 @@ function App() {
             <Product
               key={product.id}
               {...product}
-              handleDeletePhone={handleDeletePhone}
+              handleDeleteProduct={handleDeleteProduct}
             />
           );
         })}
