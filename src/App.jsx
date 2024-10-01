@@ -16,17 +16,18 @@ function App() {
     const newProducts = JSON.parse(json);
     const currentProduct = newProducts.find((product) => product.id === id);
     currentProduct.amount = currentProduct.amount + 1;
-    console.log(currentProduct);
     setProducts(newProducts);
   }
 
-  //napravi novi array newProducts
-  //taj novi array treba da bude napravljen od products array-a
-  //primi id u funkciju
-  //i samo za taj product koji ima taj id update mu quantity
-  //sad imas novi array newProducts sa updatetovanim proizvodom
-  //pozovi setProducts(newProducts)
-
+  function decreaseQuantity(id) {
+    const json = JSON.stringify(products);
+    const newProducts = JSON.parse(json);
+    const currentProduct = newProducts.find((product) => product.id === id);
+    if (currentProduct.amount > 1) {
+      currentProduct.amount = currentProduct.amount - 1;
+      setProducts(newProducts);
+    }
+  }
   function calculateTotalPrice() {
     let totalPrice = 0;
     for (let i = 0; i < products.length; i++) {
@@ -65,6 +66,7 @@ function App() {
               {...product}
               handleDeleteProduct={handleDeleteProduct}
               increaseQuantity={increaseQuantity}
+              decreaseQuantity={decreaseQuantity}
             />
           );
         })}

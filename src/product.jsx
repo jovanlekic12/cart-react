@@ -10,6 +10,7 @@ function Product(props) {
     amount,
     handleDeleteProduct,
     increaseQuantity,
+    decreaseQuantity,
   } = props;
   return (
     <li className="list__item">
@@ -24,7 +25,7 @@ function Product(props) {
       <div className="amount__container">
         <FaAngleUp onClick={() => increaseQuantity(id)} />
         <h5 className="amount">{amount}</h5>
-        <FaAngleDown />
+        <FaAngleDown onClick={() => decreaseQuantity(id)} />
       </div>
     </li>
   );
