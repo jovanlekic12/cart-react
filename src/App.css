@@ -21,7 +21,7 @@ main h1 {
   flex-direction: column;
   gap: 2rem;
   max-width: 60%;
-  margin: 5rem auto;
+  margin: 2rem auto;
   border: 1px solid red;
 }
 
@@ -74,4 +74,28 @@ main h1 {
   display: flex;
   justify-content: space-between;
   font-size: 2rem;
+}
+
+.header svg {
+  font-size: 3rem;
+}
+
+.header h1 {
+  font-size: 3rem;
+  font-family: monospace;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+  background-color: red;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.mjau {
+  width: 2rem;
+  background-color: black;
 }
