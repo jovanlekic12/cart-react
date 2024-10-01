@@ -11,7 +11,14 @@ function App() {
     setProducts((prev) => prev.filter((product) => product.id !== id));
   }
 
-  function increaseQuantity(id) {}
+  function increaseQuantity(id) {
+    const json = JSON.stringify(products);
+    const newProducts = JSON.parse(json);
+    const currentProduct = newProducts.find((product) => product.id === id);
+    currentProduct.amount = currentProduct.amount + 1;
+    console.log(currentProduct);
+    setProducts(newProducts);
+  }
 
   //napravi novi array newProducts
   //taj novi array treba da bude napravljen od products array-a
@@ -23,7 +30,7 @@ function App() {
   function calculateTotalPrice() {
     let totalPrice = 0;
     for (let i = 0; i < products.length; i++) {
-      totalPrice += products[i].price;
+      totalPrice += products[i].price * products[i].amount;
     }
     return Math.trunc(totalPrice);
   }
@@ -57,6 +64,7 @@ function App() {
               key={product.id}
               {...product}
               handleDeleteProduct={handleDeleteProduct}
+              increaseQuantity={increaseQuantity}
             />
           );
         })}

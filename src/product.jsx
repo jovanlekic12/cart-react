@@ -2,7 +2,15 @@ import React from "react";
 import { useState } from "react";
 import { FaAngleUp, FaAngleDown } from "react-icons/fa";
 function Product(props) {
-  const { id, title, price, image, amount, handleDeleteProduct } = props;
+  const {
+    id,
+    title,
+    price,
+    image,
+    amount,
+    handleDeleteProduct,
+    increaseQuantity,
+  } = props;
   return (
     <li className="list__item">
       <img src={image} alt="404" className="image" />
@@ -14,7 +22,7 @@ function Product(props) {
         </button>
       </div>
       <div className="amount__container">
-        <FaAngleUp />
+        <FaAngleUp onClick={() => increaseQuantity(id)} />
         <h5 className="amount">{amount}</h5>
         <FaAngleDown />
       </div>
