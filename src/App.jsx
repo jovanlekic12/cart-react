@@ -5,15 +5,19 @@ import "./App.css";
 const url = "https://fakestoreapi.com/products";
 function App() {
   const [products, setProducts] = useState([]);
-  const [total, setTotal] = useState(0);
   const [error, setError] = useState(null);
 
   function calculateTotalAmount() {
-    let total;
+    let total = 0;
     for (let i = 0; i < products.length; i++) {
-      total += products[i].amount;
+      total = total + products[i].amount;
     }
     return total;
+  }
+  const totalAmount = calculateTotalAmount();
+  const total = calculateTotalPrice();
+  function handleDeleteAll() {
+    setProducts([]);
   }
 
   function handleDeleteProduct(id) {
@@ -33,7 +37,7 @@ function App() {
 
   function decreaseQuantity(id) {
     const newProducts = products.map((product) => {
-      if (product.id === id) {
+      if (product.id === id && product.amount > 1) {
         return { ...product, amount: product.amount - 1 };
       } else {
         return product;
@@ -64,12 +68,9 @@ function App() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    setTotal(calculateTotalPrice);
-  }, [products]);
   return (
     <>
-      <Header calculateTotalAmount={calculateTotalAmount} />
+      <Header totalAmount={totalAmount} />
       <main className="main__container">
         {error && <p>Error: {error.message}</p>}
         <h1>YOUR BAG</h1>
@@ -90,6 +91,9 @@ function App() {
             <h3 className="total__price">{total}$</h3>
           </div>
         </ul>
+        <button className="clear__btn" onClick={handleDeleteAll}>
+          CLEAR CART
+        </button>
       </main>
     </>
   );

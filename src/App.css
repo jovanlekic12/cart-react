@@ -4,6 +4,12 @@
   font-family: sans-serif;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 main h1 {
   text-align: center;
 }
@@ -21,8 +27,8 @@ main h1 {
   flex-direction: column;
   gap: 2rem;
   max-width: 60%;
-  margin: 2rem auto;
   border: 1px solid red;
+  margin: 1rem 0;
 }
 
 .list__item {
@@ -98,4 +104,45 @@ main h1 {
 .mjau {
   width: 2rem;
   background-color: black;
+}
+
+.cart__icon__container {
+  position: relative;
+}
+
+.counter__container {
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.counter__container h1 {
+  font-size: 1.5rem;
+}
+
+.clear__btn {
+  font-size: 2rem;
+  font-family: monospace;
+  font-weight: 600;
+  padding: 1rem 3rem;
+  margin: 0 auto;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid red;
+  color: red;
+  transition: all 0.5s;
+}
+
+.clear__btn:hover {
+  cursor: pointer;
+  background-color: red;
+  color: #fff;
+  transition: all 0.5s;
 }
